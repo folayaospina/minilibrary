@@ -1,0 +1,554 @@
+{
+	"info": {
+		"_postman_id": "f2ffac9a-0feb-4aeb-82a1-56e23667b3cf",
+		"name": "POSTMANCOLLECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14149591"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Felipe\",\n    \"email\": \"f@f.com\",\n    \"password\": \"123\",\n    \"roleType\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"f@ff.com\",\n    \"password\": \"123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/books/create/Userid",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyNjk5NjQwLCJleHAiOjE3NTI3ODYwNDB9.D39py0eXzt6AKUf9qLanZTt2yCh44BjFTXSCNPTNUSw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Felipe y las hafdaees\",\n    \"author\": \"Felipe\",\n    \"isbn\": \"14324223a12312efw3\",\n    \"borrowed\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books/create/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/iduser/borrow/idbook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyNzIxNjQ3LCJleHAiOjE3NTI4MDgwNDd9.mgIfFW2acqNHosdQrKgUxh1uusC-Uv_Duerk85r9kDM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Felipe y las hafdaees\",\n    \"author\": \"Felipe\",\n    \"isbn\": \"14324223a12312efw3\",\n    \"borrowed\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/3/borrow/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"3",
+						"borrow",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/iduser/return/idbook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyNzc4NjU1LCJleHAiOjE3NTI4NjUwNTV9.xxvppYvmfNoImWY1GjxWva6Do4IKiFxEW51zDen08b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/4/return/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"4",
+						"return",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/iduser/books",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyNjk5NjQwLCJleHAiOjE3NTI3ODYwNDB9.D39py0eXzt6AKUf9qLanZTt2yCh44BjFTXSCNPTNUSw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/3/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"3",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/iduser/history",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyNzc4NjU1LCJleHAiOjE3NTI4NjUwNTV9.xxvppYvmfNoImWY1GjxWva6Do4IKiFxEW51zDen08b8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/4/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"4",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/iduser/book/idbook/update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU4MDE3LCJleHAiOjE3NTI5NDQ0MTd9.Rxo_utHXJr5zJvo2KxD2RvKS6A8d6-SRmGPZXOEkvDE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Prueba 4\",\n    \"author\": \"\",\n    \"isbn\":\"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/3/book/3/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"3",
+						"book",
+						"3",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/book/search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU4MDE3LCJleHAiOjE3NTI5NDQ0MTd9.Rxo_utHXJr5zJvo2KxD2RvKS6A8d6-SRmGPZXOEkvDE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\" : \"Felipe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/books/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/books/user/iduser/delete/isbnid",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU4MDE3LCJleHAiOjE3NTI5NDQ0MTd9.Rxo_utHXJr5zJvo2KxD2RvKS6A8d6-SRmGPZXOEkvDE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/user/4/delete/123a123123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"user",
+						"4",
+						"delete",
+						"123a123123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/books/borrowed",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU4MDE3LCJleHAiOjE3NTI5NDQ0MTd9.Rxo_utHXJr5zJvo2KxD2RvKS6A8d6-SRmGPZXOEkvDE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books/borrowed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"borrowed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/management/getall",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU5NDcyLCJleHAiOjE3NTI5NDU4NzJ9.fKRuNzPILbeSFC7WVjQ6wFh6kzf20wIgWx_OhqFnZu0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/management/getall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"management",
+						"getall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/management/getone/iduser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU5NDcyLCJleHAiOjE3NTI5NDU4NzJ9.fKRuNzPILbeSFC7WVjQ6wFh6kzf20wIgWx_OhqFnZu0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/management/getone/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"management",
+						"getone",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/management/update/3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU5NDcyLCJleHAiOjE3NTI5NDU4NzJ9.fKRuNzPILbeSFC7WVjQ6wFh6kzf20wIgWx_OhqFnZu0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/management/getone/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"management",
+						"getone",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/management/delete/iduser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImZAZmYuY29tIiwic3ViIjoiZkBmZi5jb20iLCJqdGkiOiI0IiwiaWF0IjoxNzUyODU5NDcyLCJleHAiOjE3NTI5NDU4NzJ9.fKRuNzPILbeSFC7WVjQ6wFh6kzf20wIgWx_OhqFnZu0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/management/delete/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"management",
+						"delete",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Felipe\",\n    \"email\": \"f@f.com\",\n    \"password\": \"123\",\n    \"roleType\": \"ADMIN\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

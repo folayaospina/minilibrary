@@ -102,10 +102,6 @@ public class BookService {
         User librarian = findUserById(userId);
         validateLibrarianRole(librarian);
 
-        if (!isLibrarian(librarian)) {
-            throw new RuntimeException("Solo los bibliotecarios pueden actualizar libros");
-        }
-
         Book bookToUpdate = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Libro no encontrado"));
 
@@ -114,9 +110,22 @@ public class BookService {
             throw new RuntimeException("The ISBN already exist" + bookRequest.isbn());
         }
 
+        if (!bookRequest.title().isEmpty() ) {
         bookToUpdate.setTitle(bookRequest.title());
+        }else{
+            bookToUpdate.setTitle(bookToUpdate.getTitle());
+        }
+
+        if (!bookRequest.author().isEmpty()){
         bookToUpdate.setAuthor(bookRequest.author());
-        bookToUpdate.setIsbn(bookRequest.isbn());
+        }else{
+            bookToUpdate.setAuthor(bookToUpdate.getAuthor());
+        }
+        if (!bookRequest.isbn().isEmpty()) {
+            bookToUpdate.setIsbn(bookRequest.isbn());
+        }else{
+            bookToUpdate.setIsbn(bookToUpdate.getIsbn());
+        }
 
         Book updatedBook = bookRepository.save(bookToUpdate);
         return ResponseEntity.ok(updatedBook);
@@ -127,9 +136,6 @@ public class BookService {
     public ResponseEntity<Book> deleteBook(String bookISBN, Long userId) {
         User librarian = findUserById(userId);
         validateLibrarianRole(librarian);
-        if (!isLibrarian(librarian)) {
-            throw new RuntimeException("Solo los bibliotecarios pueden eliminar libros");
-        }
         Book bookToDelete = bookRepository.findByIsbn(bookISBN);
         if (bookToDelete == null) {
             throw new EntityNotFoundException("Libro no encontrado");
@@ -163,14 +169,18 @@ public class BookService {
     }
 
     @Transactional
-    public ResponseEntity<List<Book>> borrowedBooks() {
+    public ResponseEntity<List<BookDTO>> borrowedBooks() {
         List<Book> booksBorrowed = bookRepository.findAllByBorrowed(true);
 
         if (booksBorrowed.isEmpty()) {
             throw new RuntimeException("No books borrowed");
         }
 
-        return ResponseEntity.ok(booksBorrowed);
+        List<BookDTO> booksBorrowedDTO = booksBorrowed.stream()
+                .map(BookDTO::fromBook)
+                .toList();
+
+        return ResponseEntity.ok(booksBorrowedDTO);
     }
 
     @Transactional
@@ -232,7 +242,7 @@ public class BookService {
     }
 
     private void validateLibrarianRole(User user) {
-        if ("ADMIN".equals(user.getRole().getRole().toString())) {
+        if (user.getRole().getRole().toString().equals("USER")) {
             throw new RuntimeException("El usuario no es bibliotecario");
         }
     }

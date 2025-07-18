@@ -34,7 +34,7 @@ public class UserService {
     @Transactional
     public ResponseEntity<UserDTO> getOneUser(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        if (user.getName().isEmpty()) {
+        if (user.getPassword().isEmpty()) {
             throw new RuntimeException("User doesnt exist");
         }
         
@@ -48,8 +48,16 @@ public class UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         validateLibrarianRole(user);
+        if (!userDTO.getName().isEmpty()) {
         user.setName(userDTO.getName());
+        }else{
+            user.setName(user.getName());
+        }
+        if (!userDTO.getEmail().isEmpty()) {
         user.setEmail(userDTO.getEmail());
+        }else {
+            user.setEmail(user.getEmail());
+        }
 
         User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(UserDTO.fromUser(updatedUser));
@@ -66,7 +74,7 @@ public class UserService {
 
 
     private void validateLibrarianRole(User user) {
-        if ("ADMIN".equals(user.getRole().getRole().toString())) {
+        if (user.getRole().getRole().toString().equals("USER")) {
             throw new RuntimeException("El usuario no es bibliotecario");
         }
     }
